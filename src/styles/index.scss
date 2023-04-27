@@ -1,0 +1,7 @@
+@use 'reset';
+@use 'vars' as v;
+
+body {
+    background-color: v.$bg-color;
+    font-family: v.$font;
+}

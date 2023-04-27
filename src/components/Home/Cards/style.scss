@@ -1,0 +1,55 @@
+@use '../../../styles/vars' as v;
+.Cards {
+    
+    .title-room {
+        color: v.$navcolor;
+        background-color: v.$orangecolor;
+        padding: 0.5rem 0.5rem;
+        border-radius: 8px;
+        color: white;
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+        margin-left: 1rem;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+    }
+
+    .category {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-items: baseline;
+        gap: 1rem;
+        
+    }
+
+
+       // slider 
+       .slick-slide {
+           overflow: hidden;
+           padding: 2rem;
+       }
+   
+       .slick-next,
+       .slick-next:hover {
+           color: black;
+           right: 0;
+       }
+       
+       .slick-prev,
+       .slick-prev:hover {
+           color: black;
+           margin-left: 0.5rem;
+           left: 0;
+           z-index: 1;
+       }
+
+    
+}
+
+@media screen and (max-width:900px) {
+    .slick-arrow {
+        display: none!important;
+    }
+}
+    
