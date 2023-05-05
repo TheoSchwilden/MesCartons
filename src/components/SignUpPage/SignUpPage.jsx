@@ -4,7 +4,10 @@ import './SignUpPage.scss';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { resetErrorMsg, resetSuccessMsg, signUp } from '../../actions/user';
+import {
+  resetErrorMsg, resetSuccessMsg, setLoadingSignUp, signUp,
+} from '../../actions/user';
+import LoaderSignUp from '../Loader/LoaderSignUp';
 
 function SignUpPage() {
   const [firstname, setFirstName] = useState('');
@@ -14,6 +17,7 @@ function SignUpPage() {
   const [plainPassword, setPlainPassword] = useState('');
   const dispatch = useDispatch();
 
+  const loading = useSelector((state) => state.user.loader);
   const successMsg = useSelector((state) => state.user.message);
   const errorMsg = useSelector((state) => state.user.error);
   const errorArray = errorMsg ? errorMsg.split('.').map((e) => e.trim()) : [];
@@ -21,6 +25,7 @@ function SignUpPage() {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(setLoadingSignUp());
     dispatch(signUp(email, password, plainPassword, firstname, lastname));
   };
 
@@ -139,9 +144,10 @@ function SignUpPage() {
             {successMsg && <p className="text-green-500 text-center">{successMsg}</p>}
             <button
               type="submit"
-              className="w-full px-4 py-2 text-white font-medium bg-orange-500 hover:bg-orange-500 active:bg-orange-500 rounded-lg duration-150"
+              className="flex justify-center items-center gap-8 w-full px-4 py-2 text-white font-medium bg-orange-500 hover:bg-orange-500 active:bg-orange-500 rounded-lg duration-150"
             >
               Créer votre compte
+              {loading ? <LoaderSignUp /> : null}
             </button>
           </form>
         </div>

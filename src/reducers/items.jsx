@@ -3,7 +3,7 @@ import {
   SET_CARDBOARD_INFO, ADD_ITEM_SUCCESS,
   SET_ITEM_ID, EDIT_ITEM_NAME_SUCCESS, ITEM_QUANTITY_SUCCESS,
   DELETE_ITEM_SUCCESS, SET_FRAGILITY_SUCCESS, SET_MOBILITY_SUCCESS,
-  SET_WEIGHT_SUCCESS, SET_SELECT_STATUS_SUCCESS,
+  SET_WEIGHT_SUCCESS, SET_SELECT_STATUS_SUCCESS, SET_LOADING,
 } from '../actions/Items';
 
 const initialState = {
@@ -117,6 +117,13 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         cardBoardInfo: newStatus,
+      };
+    }
+    case SET_LOADING: {
+      const { loading } = payload;
+      return {
+        ...state,
+        loader: loading,
       };
     }
     default:

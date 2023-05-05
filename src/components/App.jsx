@@ -1,5 +1,7 @@
 import { RequireAuth, useIsAuthenticated } from 'react-auth-kit';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import {
+  Navigate, Route, Routes, useLocation,
+} from 'react-router-dom';
 
 import './App.scss';
 
@@ -34,8 +36,8 @@ function App() {
       {isAuthenticated() && <Header />}
 
       <Routes>
-        <Route path="/inscription" element={<SignUpPage />} />
-        <Route path="/connexion" element={<LoginForm />} />
+        <Route path="/inscription" element={isAuthenticated() ? <Navigate to="/" /> : <SignUpPage />} />
+        <Route path="/connexion" element={isAuthenticated() ? <Navigate to="/" /> : <LoginForm />} />
         <Route path="/creer-mon-demenagement" element={<RequireAuth loginPath="/inscription"><CreateProject /></RequireAuth>} />
         <Route path="/creer-mon-demenagement-pieces" element={<RequireAuth loginPath="/inscription"><AddingRoomForm /></RequireAuth>} />
         <Route path="/" element={<RequireAuth loginPath="/inscription"><Home /></RequireAuth>} />

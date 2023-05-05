@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faBoxOpen, faPenToSquare, faTrash, faPaperPlane, faPlus, faMinus, faCheck,
+  faPenToSquare, faTrash, faPaperPlane, faPlus, faMinus, faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import boxOpen from '../../assets/icons/png/boxopen.png';
 
 import {
   addItem, addItemQuantity, deleteItem, editItem, fetchItems, setFragility, setItemId,
+  setLoading,
   setMobility,
   setSelectStatus,
   setWeight,
@@ -109,6 +110,7 @@ function CardBoard() {
   };
 
   useEffect(() => {
+    dispatch(setLoading(true));
     dispatch(fetchItems());
   }, []);
 
@@ -210,14 +212,14 @@ function CardBoard() {
         </select>
       </div>
       <div className="flex justify-center">
-        <a href="/">
+        <NavLink to="/">
           <button
             type="button"
             className="px-4 py-2 mt-3 text-orange-500 bg-white rounded-lg duration-150 hover:bg-orange-600 hover:text-white active:shadow-lg"
           >
             Accueil
           </button>
-        </a>
+        </NavLink>
       </div>
     </div>
 

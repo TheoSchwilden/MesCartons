@@ -1,5 +1,6 @@
 import {
-  RESET_ERROR_MSG, RESET_SUCCESS_MSG, RESET_USER, SAVE_TOKEN, SAVE_USER, SIGN_UP_FAILURE,
+  RESET_ERROR_MSG, RESET_SUCCESS_MSG,
+  RESET_USER, SAVE_TOKEN, SAVE_USER, SET_LOADING_SIGNUP, SIGN_UP_FAILURE,
   SIGN_UP_SUCCESS,
 } from '../actions/user';
 
@@ -14,6 +15,7 @@ const initialState = {
   userName: userData ? userData.firstname : null,
   userEmail: userData ? userData.email : null,
   token: token || null,
+  loader: false,
 };
 
 function reducer(state = initialState, action = {}) {
@@ -27,6 +29,7 @@ function reducer(state = initialState, action = {}) {
         user: data.user.firstname,
         error: '',
         message: 'Inscription réussie, merci de confirmer votre email',
+        loader: false,
       };
     }
     case SIGN_UP_FAILURE: {
@@ -35,6 +38,7 @@ function reducer(state = initialState, action = {}) {
         ...state,
         user: null,
         error,
+        loader: false,
       };
     }
     case RESET_SUCCESS_MSG:
@@ -65,6 +69,11 @@ function reducer(state = initialState, action = {}) {
         userId: null,
         userName: null,
         token: null,
+      };
+    case SET_LOADING_SIGNUP:
+      return {
+        ...state,
+        loader: true,
       };
     default:
       return state;

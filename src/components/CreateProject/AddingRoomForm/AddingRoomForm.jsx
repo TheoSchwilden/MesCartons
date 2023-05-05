@@ -5,6 +5,7 @@ import './style.scss';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { getRoomColor, getRoomIcon } from '../../../func/func';
 
 import Loader from '../../Loader/Loader';
 import {
@@ -13,7 +14,7 @@ import {
   fetchProjectRoomTypes,
 } from '../../../actions/Project';
 
-function CreateProject() {
+function AddingRoomForm() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,7 +63,7 @@ function CreateProject() {
 
   return (
     <section className="">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto mt-12  md: lg:py-0">
+      <div className="addformroom flex flex-col items-center justify-center px-6 py-8 mx-auto mt-12  md: lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-orange-400 md:text-2xl dark:text-orange-400">
@@ -85,9 +86,15 @@ function CreateProject() {
               </div>
               {showErrorMsg && <p className="text-red-500">{errorDeleteMsg}</p>}
               {projectAddRoomList.map((addedRoom) => (
-                <ul className="flex justify-center gap-2" key={addedRoom.id}>
-                  <li className="">{addedRoom.roomName}</li>
-                  <FontAwesomeIcon className="cursor-pointer" icon={faXmark} onClick={() => handleDeleteRoom(addedRoom.id)} />
+                <ul className="flex justify-center items-center gap-2" key={addedRoom.id}>
+                  <li className={`text-md text-white font-medium px-2.5 py-0.5 rounded ${getRoomColor(addedRoom.roomName)}`}>
+                    <span className="mr-3 text-white">
+                      {' '}
+                      {getRoomIcon(addedRoom.roomName)}
+                    </span>
+                    {addedRoom.roomName}
+                    <FontAwesomeIcon className="cursor-pointer text-white ml-5" icon={faXmark} onClick={() => handleDeleteRoom(addedRoom.id)} />
+                  </li>
                 </ul>
               ))}
               <button type="submit" className="w-full text-white bg-orange-400 hover:bg-orange-400 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-400 dark:hover:bg-orange-400 dark:focus:ring-primary-800">Valider</button>
@@ -104,4 +111,4 @@ function CreateProject() {
   );
 }
 
-export default CreateProject;
+export default AddingRoomForm;

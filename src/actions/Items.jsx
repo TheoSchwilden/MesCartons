@@ -19,6 +19,14 @@ export const SET_WEIGHT = 'SET_WEIGHT';
 export const SET_WEIGHT_SUCCESS = 'SET_WEIGHT_SUCCESS';
 export const SET_SELECT_STATUS = 'SET_SELECT_STATUS';
 export const SET_SELECT_STATUS_SUCCESS = 'SET_SELECT_STATUS_SUCCESS';
+export const SET_LOADING = 'SET_LOADING';
+
+export function setLoading(loading) {
+  return {
+    type: SET_LOADING,
+    payload: { loading },
+  };
+}
 
 export function setSelectStatusSuccess(newStatus) {
   return {

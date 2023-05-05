@@ -51,9 +51,9 @@ function ProfileDropDown(props) {
       </div>
       <ul className={`bg-orange-400 z-20 top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${state ? '' : 'lg:hidden'}`}>
         <li>
-          <a href="/mon-compte" className="block text-white lg:hover:bg-orange-500 lg:p-2.5">
+          <NavLink to="/mon-compte" className="block text-white lg:hover:bg-orange-500 lg:p-2.5">
             Mon compte
-          </a>
+          </NavLink>
         </li>
         <li>
           <NavLink to="/connexion" className="block text-white lg:hover:bg-orange-500 lg:p-2.5" onClick={handleLogOut}>
@@ -66,7 +66,7 @@ function ProfileDropDown(props) {
   );
 }
 
-export default function () {
+export default function navBar() {
   const [menuState, setMenuState] = useState(false);
 
   // Replace javascript:void(0) path with your path
@@ -81,14 +81,14 @@ export default function () {
     <nav className="bg-orange-400 border-b">
       <div className="flex items-center space-x-8 py-3 px-4 max-w-screen-xl mx-auto md:px-4">
         <div className="flex-none lg:flex-initial">
-          <a href="/">
+          <NavLink to="/">
             <img
               src={packagelogo}
               width={40}
               height={40}
               alt="logo"
             />
-          </a>
+          </NavLink>
         </div>
         <div className="flex-1 flex items-center justify-between">
           <div className={`bg-orange-400 absolute z-20  w-full top-16 left-0 p-4 border-b lg:z-0 lg:static lg:block lg:border-none ${menuState ? '' : 'hidden'}`}>
@@ -96,9 +96,9 @@ export default function () {
               {
                                 navigation.map((item, idx) => (
                                   <li key={idx} className="text-white hover:text-orange-700">
-                                    <a href={item.path}>
+                                    <NavLink to={item.path}>
                                       {item.title}
-                                    </a>
+                                    </NavLink>
                                   </li>
                                 ))
                             }
@@ -144,4 +144,3 @@ export default function () {
     </nav>
   );
 }
-

@@ -6,6 +6,13 @@ export const RESET_ERROR_MSG = 'RESET_ERROR_MSG';
 export const SAVE_USER = 'SAVE_USER';
 export const RESET_USER = 'RESET_USER';
 export const SAVE_TOKEN = 'SAVE_TOKEN';
+export const SET_LOADING_SIGNUP = 'SET_LOADING_SIGNUP';
+
+export function setLoadingSignUp() {
+  return {
+    type: SET_LOADING_SIGNUP,
+  };
+}
 
 export function saveToken(token) {
   localStorage.setItem('token', JSON.stringify(token));

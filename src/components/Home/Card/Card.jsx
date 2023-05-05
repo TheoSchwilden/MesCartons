@@ -6,6 +6,7 @@ import { faEdit, faXmark } from '@fortawesome/free-solid-svg-icons';
 import './style.scss';
 
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteCardBoard, setCardBoardIdForEdit, setUniqueCardBoardId } from '../../../actions/CardBoards';
 import boxclose from '../../../assets/icons/png/boxclose.png';
@@ -91,7 +92,7 @@ function Card({
           </div>
         </div>
         <div className="flex justify-center mt-3">
-          <a href={`mon-carton/${id}`}>
+          <NavLink to={`mon-carton/${id}`}>
             <button
               type="button"
               className="px-4 py-2 text-white bg-orange-500 rounded-lg duration-150 hover:bg-orange-500 active:shadow-lg"
@@ -99,7 +100,7 @@ function Card({
             >
               Ouvrir
             </button>
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>
